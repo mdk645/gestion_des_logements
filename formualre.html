@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Logement</title>
+ 
+</head>
+<style>body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #fff;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.form-left, .form-right {
+    width: 45%;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="number"], input[type="file"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #2b2b2b;
+    color: #fff;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+.btn {
+    background: #03e9f4;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #029dbd;
+}
+</style>
+<body>
+    <div class="form-container">
+        <div class="form-left">
+            <h2>Type de Logement</h2>
+            <label>
+                <input type="radio" name="type" value="appartement"> Appartement
+            </label>
+            <label>
+                <input type="radio" name="type" value="maison"> Maison
+            </label>
+            <h2>Wilaya</h2>
+            <select id="wilaya-select">
+                <option value="">Sélectionnez une wilaya</option>
+                <option value="Adrar">Adrar</option>
+                <option value="Assaba">Assaba</option>
+                <option value="Brakna">Brakna</option>
+                <option value="Dakhlet Nouadhibou">Dakhlet Nouadhibou</option>
+                <option value="Gorgol">Gorgol</option>
+                <option value="Guidimaka">Guidimaka</option>
+                <option value="Hodh Ech Chargui">Hodh Ech Chargui</option>
+                <option value="Hodh El Gharbi">Hodh El Gharbi</option>
+                <option value="Inchiri">Inchiri</option>
+                <option value="Nouakchott-Nord">Nouakchott-Nord</option>
+                <option value="Nouakchott-Ouest">Nouakchott-Ouest</option>
+                <option value="Nouakchott-Sud">Nouakchott-Sud</option>
+                <option value="Tagant">Tagant</option>
+                <option value="Tiris Zemmour">Tiris Zemmour</option>
+                <option value="Trarza">Trarza</option>
+            </select>
+            <h2>Ville</h2>
+            <select id="ville-select">
+                <option value="">Sélectionnez une wilaya d'abord</option>
+            </select>
+        </div>
+        <div class="form-right">
+            <h2>Prix</h2>
+            <input type="text" name="prix" placeholder="Prix">
+            <h2>État</h2>
+            <label>
+                <input type="radio" name="etat" value="vente"> Vente
+            </label>
+            <label>
+                <input type="radio" name="etat" value="alouer"> À louer
+            </label>
+            <h2>Nombre de Chambres</h2>
+            <input type="number" name="chambres" placeholder="Nombre de chambres">
+            <h2>Photos</h2>
+            <input type="file" name="photos" accept="image/*" multiple>
+            <button type="submit" class="btn">Envoyer</button>
+        </div>
+    </div>
+ <script>document.getElementById('wilaya-select').addEventListener('change', function() {
+    var villeSelect = document.getElementById('ville-select');
+    villeSelect.innerHTML = '';
+
+    var wilaya = this.value;
+    var villes = {
+        'Adrar': ['Atar', 'Chinguetti', 'Ouadane'],
+        'Assaba': ['Barkéol', 'Boumguel', 'Kiffa'],
+        'Brakna': ['Aleg', 'Bababé', 'Boghé'],
+        'Dakhlet Nouadhibou': ['Nouadhibou'],
+        'Gorgol': ['Kaédi', 'Maghama', 'Monguel'],
+        'Guidimaka': ['Sélibaby', 'Ould Yengé'],
+        'Hodh Ech Chargui': ['Néma', 'Amourj', 'Bassiknou'],
+        'Hodh El Gharbi': ['Aioun', 'Kobenni', 'Timbédra'],
+        'Inchiri': ['Akjoujt'],
+        'Nouakchott-Nord': ['Teyarett', 'Dar-Naim', 'Toujounine'],
+        'Nouakchott-Ouest': ['Tevragh-Zeina', 'Ksar', 'Sebkha'],
+        'Nouakchott-Sud': ['Arafat', 'El Mina', 'Riyad'],
+        'Tagant': ['Tidjikja', 'Tichit', 'Rachid'],
+        'Tiris Zemmour': ['Zouérat', 'F’derik', 'Bir Moghrein'],
+        'Trarza': ['Rosso', 'Boutilimit', 'R’Kiz']
+    };
+
+    if (villes[wilaya]) {
+        villes[wilaya].forEach(function(ville) { 
+            var option = document.createElement('option');
+            option.value = ville;
+            option.textContent = ville;
+            villeSelect.appendChild(option);
+        });
+    }
+});
+</script>
+</body>
+</html>
